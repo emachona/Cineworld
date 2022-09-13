@@ -1,0 +1,66 @@
+﻿@model Cinema.ViewModels.MoviePosterVM
+
+@{
+    ViewData["Title"] = "Edit Poster";
+}
+
+<h3 style="color:red">Change Movie Poster</h3>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditPoster" method="post" enctype="multipart/form-data" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="movie.MovieId" />
+            <div class="form-group">
+                <label asp-for="movie.Title" class="control-label"></label>
+                <input asp-for="movie.Title" class="form-control" readonly="@(true)"/>
+                <span asp-validation-for="movie.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="display:none">
+                <label asp-for="movie.Poster" class="control-label"></label>
+                <input asp-for="movie.Poster" class="form-control" readonly="@(true)"/>
+                <span asp-validation-for="movie.Poster" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="display:none">
+                <label asp-for="movie.Genre" class="control-label"></label>
+                <input asp-for="movie.Genre" class="form-control" readonly="@(true)"/>
+                <span asp-validation-for="movie.Genre" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="display:none">
+                <label asp-for="movie.Duration" class="control-label"></label>
+                <input asp-for="movie.Duration" class="form-control" readonly="@(true)"/>
+                <span asp-validation-for="movie.Duration" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="display:none">
+                <label asp-for="movie.ReleaseDate" class="control-label"></label>
+                <input asp-for="movie.ReleaseDate" class="form-control" readonly="@(true)"/>
+                <span asp-validation-for="movie.ReleaseDate" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="display:none">
+                <label asp-for="movie.Rating" class="control-label"></label>
+                <input asp-for="movie.Rating" class="form-control" readonly="@(true)"/>
+                <span asp-validation-for="movie.Rating" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="posterImage" class="control-label"></label>
+                <div class="custom-file">
+                    <input asp-for="posterImage" class="custom-file-input" id="customFile">
+                    <label class="custom-file-label" for="customFile"></label>
+                </div>
+                <span asp-validation-for="posterImage" class="text-danger"></span>
+            </div>
+            <br />
+             <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+     <a asp-action="Details" asp-route-id="@Model?.movie.MovieId">Back to Details</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

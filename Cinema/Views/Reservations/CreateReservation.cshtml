@@ -1,0 +1,87 @@
+﻿@model Cinema.Models.Reservation
+
+@{
+    ViewData["Title"] = "Make a Reservation";
+}
+<body></body>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<div style="float:left; width:35%; margin-left:23%; margin-top:5%; font-size:18px">
+        <dl class="row">
+            <dt class = "col-sm-2">
+                Movie: 
+            </dt>
+            <dd class = "col-sm-10">
+                @ViewData["MovieTitle"]
+            </dd>
+            <dt class = "col-sm-2">
+                Cinema:
+            </dt>
+            <dd class = "col-sm-10">
+                @ViewData["CinemaHall"]
+            </dd>
+            <dt class = "col-sm-2">
+                Time:
+            </dt>
+            <dd class = "col-sm-10">
+                @ViewData["Time"]
+            </dd>
+        </dl>
+    </div>
+
+<div class="row">
+    <div class="col-md-4">
+        <dl>
+        <dt class = "col-sm-2">
+                User: 
+            </dt>
+            <dd class = "col-sm-10">
+                @ViewData["User"]
+            </dd>
+            </dl>
+        <form asp-action="CreateReservation">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input type="hidden" asp-for="ScreeningId" class="form-control" value="@ViewData["ScreeningId"]" readonly="@(true)"/>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="hidden" asp-for="UserId" class="form-control" value="@ViewData["UserId"]" readonly="@(true)"/>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="Seat" class="control-label">Preferred Seat:</label>
+                <input asp-for="Seat" class="form-control" min="1" max="90"/>
+                <span asp-validation-for="Seat" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Reserve" class="btn btn-primary" style="background-color:rgb(186,50,64)" />
+            </div>
+        </form>
+    </div>
+</div>
+<br />
+<br />
+<br />
+<br />
+<br />
+<div>
+    <a asp-controller="Screenings" asp-action="Index" style="color:rgb(243,227,226)">Back to Screenings List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+<style>
+    body { 
+        background-image: url("/images/ticket_bg.jpg");
+        background-size:cover;
+        background-repeat: no-repeat;
+    }
+</style>

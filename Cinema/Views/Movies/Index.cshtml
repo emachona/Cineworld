@@ -1,0 +1,70 @@
+﻿@model Cinema.ViewModels.MoviesFilterVM
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Movies</h1>
+
+<p>
+    <a asp-action="Create" style="color:rgb(250,250,210)">Create New</a>
+</p>
+<form asp-controller="Movies" asp-action="Index" method="get">
+    <span style="color:rgb(243,227,226)">Title: </span> <input type="text" asp-for="searchTitle"/>
+    <span style="color:rgb(243,227,226)">Genre: </span><select asp-for="searchGenres" asp-items="Model.genresList" class="form-horizontal">
+        <option value="">All</option>
+    </select>
+    <input type="submit" value="Filter"/>
+</form>
+<br />
+<table class="table text-white">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.movies.FirstOrDefault().Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.movies.FirstOrDefault().Genre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.movies.FirstOrDefault().Duration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.movies.FirstOrDefault().ReleaseDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.movies.FirstOrDefault().Rating)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.movies) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Poster)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Genre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Duration) min
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReleaseDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rating)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.MovieId" style="color:rgb(250,250,210)">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.MovieId" style="color:rgb(250,250,210)">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.MovieId" style="color:rgb(250,250,210)">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

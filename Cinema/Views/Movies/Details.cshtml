@@ -1,0 +1,53 @@
+﻿@model Cinema.ViewModels.MoviePosterVM
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2> Movie Details</h2>
+<div>
+    <hr />
+    <span style="float:left;">
+        <img src="~/images/@Model.movie.Poster" height="450" width="350" asp-append-version="true" />
+     </span>
+      <div style="float:right; width:70%;">
+            <dl class="row">
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.movie.Title)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.movie.Title)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.movie.Genre)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.movie.Genre)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.movie.Duration)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.movie.Duration) min
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.movie.ReleaseDate)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.movie.ReleaseDate)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.movie.Rating)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.movie.Rating)
+            </dd>
+        </dl>
+         <div>
+            <a asp-action="EditPoster" asp-route-id="@Model?.movie.MovieId">Edit poster</a>|
+            <a asp-action="Edit" asp-route-id="@Model?.movie.MovieId">Edit</a> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </div>
+</div> 
+

@@ -1,0 +1,46 @@
+﻿@model Cinema.ViewModels.UsersFilterVM
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Users</h1>
+
+<p>
+    <a asp-action="Create" style="color:rgb(250,250,210)">Create New</a>
+</p>
+<form asp-controller="Users" asp-action="Index" method="get">
+    <span style="color:rgb(243,227,226)">User's Name: </span> <input type="text" asp-for="searchUser"/>
+    <input type="submit" value="Filter"/>
+</form>
+<br />
+<table class="table text-white">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.users.FirstOrDefault().FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.users.FirstOrDefault().Age)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.users) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.UserId" style="color:rgb(250,250,210)">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.UserId" style="color:rgb(250,250,210)">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.UserId" style="color:rgb(250,250,210)">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

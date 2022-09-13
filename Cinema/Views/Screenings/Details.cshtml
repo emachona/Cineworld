@@ -1,0 +1,60 @@
+﻿@model Cinema.Models.Screening
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Screening</h4>
+    <hr />
+    <span style="float:left;">
+      <img src="~/images/@Model.Movie.Poster" height="250" width="190" asp-append-version="true" />
+    </span>
+    <div style="float:right; width:80%;">
+        <dl class="row">
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Movie)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Movie.Title)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Time)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Time)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Cinema)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Cinema)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.AvailablePlaces)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.AvailablePlaces)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.Type)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.Type)
+            </dd>
+        </dl>
+        <div>
+            <a asp-controller="Reservations" asp-action="CreateReservation" asp-route-id="@Model?.ScreeningId" style="color:rgb(243,227,226)">Make a reservation</a> |
+            <a asp-action="Edit" asp-route-id="@Model?.ScreeningId">Edit</a> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </div>
+</div>
