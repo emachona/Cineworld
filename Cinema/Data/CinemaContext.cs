@@ -17,7 +17,7 @@ namespace Cinema.Data
         }
 
         public DbSet<Cinema.Models.Movie> Movie { get; set; } = default!;
-        public DbSet<Cinema.Models.User>? User { get; set; }
+        public DbSet<Cinema.Models.Client>? Client { get; set; }
         public DbSet<Cinema.Models.Screening>? Screening { get; set; }
         public DbSet<Cinema.Models.Reservation>? Reservation { get; set; }
 
@@ -26,7 +26,7 @@ namespace Cinema.Data
             base.OnModelCreating(builder);
 
             builder.Entity<Movie>().ToTable("Movie");
-            builder.Entity<User>().ToTable("User");
+            builder.Entity<Client>().ToTable("Client");
             builder.Entity<Screening>().ToTable("Screening");
             builder.Entity<Reservation>().ToTable("Reservation");
 
@@ -43,7 +43,7 @@ namespace Cinema.Data
             builder.Entity<Reservation>()
                 .HasOne(p => p.User)
                 .WithMany(p => p.Reservations)
-                .HasForeignKey(p => p.UserId);//.OnDelete(DeleteBehavior.NoAction);
+                .HasForeignKey(p => p.ClientId);//.OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

@@ -87,6 +87,32 @@ namespace Cinema.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("Cinema.Models.Client", b =>
+                {
+                    b.Property<int>("ClientId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ClientId"), 1L, 1);
+
+                    b.Property<int>("Age")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("ClientId");
+
+                    b.ToTable("Client", (string)null);
+                });
+
             modelBuilder.Entity("Cinema.Models.Movie", b =>
                 {
                     b.Property<int>("MovieId")
@@ -129,20 +155,20 @@ namespace Cinema.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ReservationId"), 1L, 1);
 
+                    b.Property<int>("ClientId")
+                        .HasColumnType("int");
+
                     b.Property<int>("ScreeningId")
                         .HasColumnType("int");
 
                     b.Property<int>("Seat")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("ReservationId");
 
-                    b.HasIndex("ScreeningId");
+                    b.HasIndex("ClientId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("ScreeningId");
 
                     b.ToTable("Reservation", (string)null);
                 });
@@ -181,32 +207,6 @@ namespace Cinema.Migrations
                     b.HasIndex("MovieId");
 
                     b.ToTable("Screening", (string)null);
-                });
-
-            modelBuilder.Entity("Cinema.Models.User", b =>
-                {
-                    b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"), 1L, 1);
-
-                    b.Property<int>("Age")
-                        .HasColumnType("int");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("UserId");
-
-                    b.ToTable("User", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -344,15 +344,15 @@ namespace Cinema.Migrations
 
             modelBuilder.Entity("Cinema.Models.Reservation", b =>
                 {
-                    b.HasOne("Cinema.Models.Screening", "Screening")
-                        .WithMany("Audience")
-                        .HasForeignKey("ScreeningId")
+                    b.HasOne("Cinema.Models.Client", "User")
+                        .WithMany("Reservations")
+                        .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Cinema.Models.User", "User")
-                        .WithMany("Reservations")
-                        .HasForeignKey("UserId")
+                    b.HasOne("Cinema.Models.Screening", "Screening")
+                        .WithMany("Audience")
+                        .HasForeignKey("ScreeningId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -423,6 +423,11 @@ namespace Cinema.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Cinema.Models.Client", b =>
+                {
+                    b.Navigation("Reservations");
+                });
+
             modelBuilder.Entity("Cinema.Models.Movie", b =>
                 {
                     b.Navigation("Projections");
@@ -431,11 +436,6 @@ namespace Cinema.Migrations
             modelBuilder.Entity("Cinema.Models.Screening", b =>
                 {
                     b.Navigation("Audience");
-                });
-
-            modelBuilder.Entity("Cinema.Models.User", b =>
-                {
-                    b.Navigation("Reservations");
                 });
 #pragma warning restore 612, 618
         }

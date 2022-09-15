@@ -45,7 +45,7 @@ namespace Cinema.Models
             {
                 CreateUserRoles(serviceProvider).Wait();
 
-                if (context.Movie.Any() || context.User.Any() || context.Screening.Any() || context.Reservation.Any())
+                if (context.Movie.Any() || context.Client.Any() || context.Screening.Any() || context.Reservation.Any())
                 {
                     return;
                 }
@@ -59,10 +59,10 @@ namespace Cinema.Models
                 );
                 context.SaveChanges();
 
-                context.User.AddRange(
-                    new User { FirstName = "Emilija", LastName = "Chona", Age = 21},
-                    new User { FirstName = "Natalija", LastName = "Chona", Age = 18 },
-                    new User { FirstName = "Aleksandar", LastName = "Rizev", Age = 21 }
+                context.Client.AddRange(
+                    new Client { FirstName = "Emilija", LastName = "Chona", Age = 21},
+                    new Client { FirstName = "Natalija", LastName = "Chona", Age = 18 },
+                    new Client { FirstName = "Aleksandar", LastName = "Rizev", Age = 21 }
                 );
                 context.SaveChanges();
 
@@ -75,9 +75,9 @@ namespace Cinema.Models
                 context.SaveChanges();
 
                 context.Reservation.AddRange(
-                    new Reservation { ScreeningId = 1, UserId = 1, Seat = 12},
+                    new Reservation { ScreeningId = 1, ClientId = 1, Seat = 12},
                     //new Reservation { ScreeningId = 2, UserId = 3, Seat = 34 },
-                    new Reservation { ScreeningId = 4, UserId = 2, Seat = 25 }
+                    new Reservation { ScreeningId = 4, ClientId = 2, Seat = 25 }
                 );
                 context.SaveChanges();
             }

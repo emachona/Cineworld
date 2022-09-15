@@ -71,9 +71,9 @@ namespace Cinema.Controllers
             ViewData["MovieTitle"] = screening.Movie.Title;
             ViewData["CinemaHall"] = screening.Cinema;
             ViewData["Time"] = screening.Date;
-            int currentUserId = 1;                 //string currentUserId = User.Identity.GetUserId();
-            var currUser = _context.User.Where(m => m.UserId == currentUserId).First();
-            ViewData["UserId"] = currentUserId;
+            int currentClientId = 1;                 //string currentClientId = User.Identity.GetClientId();
+            var currUser = _context.Client.Where(m => m.ClientId == currentClientId).First();
+            ViewData["ClientId"] = currentClientId;
             ViewData["User"] =currUser.FullName;
 
             return View();
@@ -85,7 +85,7 @@ namespace Cinema.Controllers
 
        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateReservation([Bind("ReservationId,ScreeningId,UserId,Seat")] Reservation reservation)
+        public async Task<IActionResult> CreateReservation([Bind("ReservationId,ScreeningId,ClientId,Seat")] Reservation reservation)
         {
             if (ModelState.IsValid)
             {
@@ -94,7 +94,7 @@ namespace Cinema.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ScreeningId"] = new SelectList(_context.Screening, "ScreeningId", "Cinema", reservation.ScreeningId);
-            ViewData["UserId"] = new SelectList(_context.User, "UserId", "FirstName", reservation.UserId);
+            ViewData["ClientId"] = new SelectList(_context.Client, "ClientId", "FirstName", reservation.ClientId);
             return View(reservation);
         }
 
@@ -112,7 +112,7 @@ namespace Cinema.Controllers
                 return NotFound();
             }
             ViewData["ScreeningId"] = new SelectList(_context.Screening, "ScreeningId", "Cinema", reservation.ScreeningId);
-            ViewData["UserId"] = new SelectList(_context.User, "UserId", "FirstName", reservation.UserId);
+            ViewData["ClientId"] = new SelectList(_context.Client, "ClientId", "FirstName", reservation.ClientId);
             return View(reservation);
         }
 
@@ -121,7 +121,7 @@ namespace Cinema.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ReservationId,ScreeningId,UserId,Seat")] Reservation reservation)
+        public async Task<IActionResult> Edit(int id, [Bind("ReservationId,ScreeningId,ClientId,Seat")] Reservation reservation)
         {
             if (id != reservation.ReservationId)
             {
@@ -149,7 +149,7 @@ namespace Cinema.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ScreeningId"] = new SelectList(_context.Screening, "ScreeningId", "Cinema", reservation.ScreeningId);
-            ViewData["UserId"] = new SelectList(_context.User, "UserId", "FirstName", reservation.UserId);
+            ViewData["ClientId"] = new SelectList(_context.Client, "ClientId", "FirstName", reservation.ClientId);
             return View(reservation);
         }
 

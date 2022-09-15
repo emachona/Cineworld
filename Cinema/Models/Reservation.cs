@@ -12,8 +12,8 @@ namespace Cinema.Models
         public Screening? Screening{ get; set; }
 
         [Required]
-        public int UserId { get; set; }
-        public User? User { get; set; }
+        public int ClientId { get; set; }
+        public Client? User { get; set; }
 
         [Required]
         public int Seat { get; set; }

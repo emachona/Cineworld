@@ -2,10 +2,10 @@
 
 namespace Cinema.Models
 {
-    public class User
+    public class Client
     {
         [Required]
-        public int UserId { get; set; }
+        public int ClientId { get; set; }
 
         [Required]
         [Display(Name ="First Name")]

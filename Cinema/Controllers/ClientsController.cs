@@ -11,11 +11,11 @@ using Cinema.ViewModels;
 
 namespace Cinema.Controllers
 {
-    public class UsersController : Controller
+    public class ClientsController : Controller
     {
         private readonly CinemaContext _context;
 
-        public UsersController(CinemaContext context)
+        public ClientsController(CinemaContext context)
         {
             _context = context;
         }
@@ -23,7 +23,7 @@ namespace Cinema.Controllers
         // GET: Users
         public async Task<IActionResult> Index( string searchUser)
         {
-            IEnumerable<User> users = _context.User.AsEnumerable();
+            IEnumerable<Client> users = _context.Client.AsEnumerable();
 
 
             if (!string.IsNullOrEmpty(searchUser))
@@ -42,13 +42,13 @@ namespace Cinema.Controllers
         // GET: Users/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.User == null)
+            if (id == null || _context.Client == null)
             {
                 return NotFound();
             }
 
-            var user = await _context.User
-                .FirstOrDefaultAsync(m => m.UserId == id);
+            var user = await _context.Client
+                .FirstOrDefaultAsync(m => m.ClientId == id);
             if (user == null)
             {
                 return NotFound();
@@ -68,7 +68,7 @@ namespace Cinema.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UserId,FirstName,LastName,Age")] User user)
+        public async Task<IActionResult> Create([Bind("ClientId,FirstName,LastName,Age")] Client user)
         {
             if (ModelState.IsValid)
             {
@@ -82,12 +82,12 @@ namespace Cinema.Controllers
         // GET: Users/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.User == null)
+            if (id == null || _context.Client == null)
             {
                 return NotFound();
             }
 
-            var user = await _context.User.FindAsync(id);
+            var user = await _context.Client.FindAsync(id);
             if (user == null)
             {
                 return NotFound();
@@ -100,9 +100,9 @@ namespace Cinema.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("UserId,FirstName,LastName,Age")] User user)
+        public async Task<IActionResult> Edit(int id, [Bind("ClientId,FirstName,LastName,Age")] Client user)
         {
-            if (id != user.UserId)
+            if (id != user.ClientId)
             {
                 return NotFound();
             }
@@ -116,7 +116,7 @@ namespace Cinema.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!UserExists(user.UserId))
+                    if (!UserExists(user.ClientId))
                     {
                         return NotFound();
                     }
@@ -133,13 +133,13 @@ namespace Cinema.Controllers
         // GET: Users/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.User == null)
+            if (id == null || _context.Client == null)
             {
                 return NotFound();
             }
 
-            var user = await _context.User
-                .FirstOrDefaultAsync(m => m.UserId == id);
+            var user = await _context.Client
+                .FirstOrDefaultAsync(m => m.ClientId == id);
             if (user == null)
             {
                 return NotFound();
@@ -153,14 +153,14 @@ namespace Cinema.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.User == null)
+            if (_context.Client == null)
             {
                 return Problem("Entity set 'CinemaContext.User'  is null.");
             }
-            var user = await _context.User.FindAsync(id);
+            var user = await _context.Client.FindAsync(id);
             if (user != null)
             {
-                _context.User.Remove(user);
+                _context.Client.Remove(user);
             }
             
             await _context.SaveChangesAsync();
@@ -169,7 +169,7 @@ namespace Cinema.Controllers
 
         private bool UserExists(int id)
         {
-          return (_context.User?.Any(e => e.UserId == id)).GetValueOrDefault();
+          return (_context.Client?.Any(e => e.ClientId == id)).GetValueOrDefault();
         }
     }
 }

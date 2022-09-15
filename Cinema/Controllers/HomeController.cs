@@ -38,31 +38,31 @@ namespace Cinema.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        [Authorize(Roles = "Admin")]
-        public IActionResult RegisterClient(string userID)
-        {
-            if (userID == null)
-            {
-                return NotFound();
-            }
-            ViewBag.Client = userID;
-            ViewData["ClientId"] = new SelectList(_context.User, "UserId", "FullName");
-            return View();
-        }
+        //[Authorize(Roles = "Admin")]
+        //public IActionResult RegisterClient(string userID)
+        //{
+        //    if (userID == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    ViewBag.Client = userID;
+        //    ViewData["ClientId"] = new SelectList(_context.User, "UserId", "FullName");
+        //    return View();
+        //}
 
-        [Authorize(Roles = "Admin")]
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RegisterClient(string? userID, int? ClientId)
-        {
-            if (userID == null)
-            {
-                return NotFound();
-            }
-            var client = _context.User.Where(m => m.UserId == ClientId).First();
-            client.userId = userID;
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+        //[Authorize(Roles = "Admin")]
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> RegisterClient(string? userID, int? ClientId)
+        //{
+        //    if (userID == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    var client = _context.User.Where(m => m.UserId == ClientId).First();
+        //    client.userId = userID;
+        //    await _context.SaveChangesAsync();
+        //    return RedirectToAction(nameof(Index));
+        //}
     }
 }
