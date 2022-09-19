@@ -9,5 +9,7 @@ namespace Cinema.Areas.Identity.Data;
 // Add profile data for application users by adding properties to the CinemaUser class
 public class CinemaUser : IdentityUser
 {
+    [PersonalData]
+    public int user_ID { get; set; }
 }
 

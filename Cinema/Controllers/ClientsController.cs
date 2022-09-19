@@ -8,16 +8,20 @@ using Microsoft.EntityFrameworkCore;
 using Cinema.Data;
 using Cinema.Models;
 using Cinema.ViewModels;
+using Cinema.Areas.Identity.Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace Cinema.Controllers
 {
     public class ClientsController : Controller
     {
         private readonly CinemaContext _context;
+        private readonly UserManager<CinemaUser> _userManager;
 
-        public ClientsController(CinemaContext context)
+        public ClientsController(CinemaContext context, UserManager<CinemaUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Users
@@ -116,7 +120,7 @@ namespace Cinema.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!UserExists(user.ClientId))
+                    if (!UserExists((int)user.ClientId))
                     {
                         return NotFound();
                     }
@@ -128,6 +132,58 @@ namespace Cinema.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(user);
+        }
+
+        public async Task<IActionResult> CreateAccount(int? id)
+        {
+            if (id == null || _context.Client == null)
+            {
+                return NotFound();
+            }
+
+            var user = await _context.Client.FindAsync(id);
+            ViewData["ClientId"] = id;
+            ViewData["userId"] = user.user;
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateAccount(int id, [Bind("ClientId,FirstName,LastName,Age,user")] Client client)
+        {
+            if (id != client.ClientId)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var role = "Client";
+                    CinemaUser user = _userManager.Users.FirstOrDefault(u => u.Id == client.user);
+                    await _userManager.AddToRoleAsync(user, role);
+                    _context.Update(client);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!UserExists((int)client.ClientId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction("Index", "Home");
+            }
+            return View(client);
         }
 
         // GET: Users/Delete/5

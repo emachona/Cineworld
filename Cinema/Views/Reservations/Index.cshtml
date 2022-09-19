@@ -47,9 +47,12 @@
                 @Html.DisplayFor(modelItem => item.Seat)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ReservationId" style="color:rgb(243,227,226)">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ReservationId" style="color:rgb(243,227,226)">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ReservationId" style="color:rgb(243,227,226)">Delete</a>
+                <!--<a asp-action="Edit" asp-route-id="@item.ReservationId" style="color:rgb(243,227,226)">Edit</a> |-->
+                @if(User.Identity.IsAuthenticated && User.IsInRole("Client")){
+                    <a asp-action="Details" asp-route-id="@item.ReservationId" style="color:rgb(243,227,226)">Details</a> 
+                    <span>|</span>
+                    <a asp-action="Delete" asp-route-id="@item.ReservationId" style="color:rgb(243,227,226)">Delete</a>
+                }
             </td>
         </tr>
 }

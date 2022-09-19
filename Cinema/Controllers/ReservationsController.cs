@@ -8,16 +8,21 @@ using Microsoft.EntityFrameworkCore;
 using Cinema.Data;
 using Cinema.Models;
 using Cinema.ViewModels;
+using System.Security.Claims;
+using Cinema.Areas.Identity.Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace Cinema.Controllers
 {
     public class ReservationsController : Controller
     {
         private readonly CinemaContext _context;
+        private readonly UserManager<CinemaUser> _userManager;
 
-        public ReservationsController(CinemaContext context)
+        public ReservationsController(CinemaContext context, UserManager<CinemaUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Reservations
@@ -71,10 +76,10 @@ namespace Cinema.Controllers
             ViewData["MovieTitle"] = screening.Movie.Title;
             ViewData["CinemaHall"] = screening.Cinema;
             ViewData["Time"] = screening.Date;
-            int currentClientId = 1;                 //string currentClientId = User.Identity.GetClientId();
-            var currUser = _context.Client.Where(m => m.ClientId == currentClientId).First();
-            ViewData["ClientId"] = currentClientId;
-            ViewData["User"] =currUser.FullName;
+            var userIdentity = _userManager.GetUserAsync(User).Result.user_ID;
+            var client = await _context.Client.Where(x => x.ClientId == userIdentity).FirstOrDefaultAsync();
+            ViewData["ClientId"] = client.ClientId;
+            ViewData["User"] =client.FullName;
 
             return View();
         }

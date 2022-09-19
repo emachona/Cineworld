@@ -28,10 +28,7 @@
                             <a class="nav-link text-danger" asp-area="" asp-controller="Screenings" asp-action="Index">Screenings</a>
                         </li>
                          <li class="nav-item">
-                             @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
-                            {
-                                <a class="nav-link text-danger" asp-area="" asp-controller="Users" asp-action="Index">Users</a>
-                            }
+                                <a class="nav-link text-danger" asp-area="" asp-controller="Clients" asp-action="Index">Clients</a>
                         </li>
                          <li class="nav-item">
                                @if (User.Identity.IsAuthenticated && User.IsInRole("Client"))

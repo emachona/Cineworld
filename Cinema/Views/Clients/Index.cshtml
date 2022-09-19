@@ -6,11 +6,12 @@
 
 <h1>Users</h1>
 
-<p>
+<!--<p>
     <a asp-action="Create" style="color:rgb(250,250,210)">Create New</a>
-</p>
+</p>-->
+
 <form asp-controller="Users" asp-action="Index" method="get">
-    <span style="color:rgb(243,227,226)">User's Name: </span> <input type="text" asp-for="searchUser"/>
+    <span style="color:rgb(243,227,226)">CLient's Name: </span> <input type="text" asp-for="searchUser"/>
     <input type="submit" value="Filter"/>
 </form>
 <br />

@@ -1,11 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Cinema.Areas.Identity.Data;
+using System.ComponentModel.DataAnnotations;
 
 namespace Cinema.Models
 {
     public class Client
     {
-        [Required]
-        public int ClientId { get; set; }
+        public int? ClientId { get; set; }
 
         [Required]
         [Display(Name ="First Name")]
@@ -25,5 +25,7 @@ namespace Cinema.Models
         }
 
         public ICollection<Reservation>? Reservations { get; set; }
+
+        public string? user { get; set; }
     }
 }
