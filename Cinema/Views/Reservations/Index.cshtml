@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1 style="color:red">Reservations</h1>
+<h1>Reservations</h1>
 
 <form asp-controller="Reservations" asp-action="Index" method="get">
     <span style="color:rgb(243,227,226)">Movie: </span><select asp-for="searchMovie" asp-items="Model.movieTitleList" class="form-horizontal">
@@ -21,6 +21,12 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.reservations.FirstOrDefault().Screening.Cinema)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.reservations.FirstOrDefault().Screening.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.reservations.FirstOrDefault().Screening.Time)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.reservations.FirstOrDefault().User)
@@ -40,20 +46,27 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Screening.Cinema)
             </td>
+             <td>
+                @Html.DisplayFor(modelItem => item.Screening.Date)
+            </td>
             <td>
-                @Html.DisplayFor(modelItem => item.User.FirstName)
+                @Html.DisplayFor(modelItem => item.Screening.Time)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.FullName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Seat)
             </td>
-            <td>
+
+          @*<td>
                 <!--<a asp-action="Edit" asp-route-id="@item.ReservationId" style="color:rgb(243,227,226)">Edit</a> |-->
                 @if(User.Identity.IsAuthenticated && User.IsInRole("Client")){
                     <a asp-action="Details" asp-route-id="@item.ReservationId" style="color:rgb(243,227,226)">Details</a> 
                     <span>|</span>
                     <a asp-action="Delete" asp-route-id="@item.ReservationId" style="color:rgb(243,227,226)">Delete</a>
                 }
-            </td>
+            </td> *@
         </tr>
 }
     </tbody>

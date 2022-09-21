@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "7O7R5WhalTJbnzXPvpTQH4YWn8OtrkqnaG5qEx87ggU=",
+  "Hash": "1XWNdwChJahz1iAkR3mIAHE1OHzgDpLyX5cg6Or81sY=",
   "Source": "Cinema",
   "BasePath": "_content/Cinema",
   "Mode": "Default",
@@ -1105,12 +1105,12 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
-      "Identity": "C:\\Users\\Com\\source\\repos\\Cinema\\Cinema\\wwwroot\\images\\2c237a34-c752-4e2f-9386-94e7a5a28378_minions_poster.jpg",
+      "Identity": "C:\\Users\\Com\\source\\repos\\Cinema\\Cinema\\wwwroot\\images\\485ee7f5-9436-4b41-8349-1382435a8de9_maverick.jpg",
       "SourceId": "Cinema",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Com\\source\\repos\\Cinema\\Cinema\\wwwroot\\",
       "BasePath": "_content/Cinema",
-      "RelativePath": "images/2c237a34-c752-4e2f-9386-94e7a5a28378_minions_poster.jpg",
+      "RelativePath": "images/485ee7f5-9436-4b41-8349-1382435a8de9_maverick.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1119,15 +1119,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\2c237a34-c752-4e2f-9386-94e7a5a28378_minions_poster.jpg"
+      "OriginalItemSpec": "wwwroot\\images\\485ee7f5-9436-4b41-8349-1382435a8de9_maverick.jpg"
     },
     {
-      "Identity": "C:\\Users\\Com\\source\\repos\\Cinema\\Cinema\\wwwroot\\images\\a6e93543-d87c-4015-8cce-7ef87b2c29a1_elvis_poster.jpg",
+      "Identity": "C:\\Users\\Com\\source\\repos\\Cinema\\Cinema\\wwwroot\\images\\c0392ac9-0381-4489-a23f-3ea819b4a805_minions_poster.jpg",
       "SourceId": "Cinema",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Com\\source\\repos\\Cinema\\Cinema\\wwwroot\\",
       "BasePath": "_content/Cinema",
-      "RelativePath": "images/a6e93543-d87c-4015-8cce-7ef87b2c29a1_elvis_poster.jpg",
+      "RelativePath": "images/c0392ac9-0381-4489-a23f-3ea819b4a805_minions_poster.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1136,7 +1136,24 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\a6e93543-d87c-4015-8cce-7ef87b2c29a1_elvis_poster.jpg"
+      "OriginalItemSpec": "wwwroot\\images\\c0392ac9-0381-4489-a23f-3ea819b4a805_minions_poster.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Com\\source\\repos\\Cinema\\Cinema\\wwwroot\\images\\cb6d6418-4572-4325-999b-31ad1a3c9eff_elvis_poster.jpg",
+      "SourceId": "Cinema",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Com\\source\\repos\\Cinema\\Cinema\\wwwroot\\",
+      "BasePath": "_content/Cinema",
+      "RelativePath": "images/cb6d6418-4572-4325-999b-31ad1a3c9eff_elvis_poster.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\cb6d6418-4572-4325-999b-31ad1a3c9eff_elvis_poster.jpg"
     },
     {
       "Identity": "C:\\Users\\Com\\source\\repos\\Cinema\\Cinema\\wwwroot\\images\\cinema.jpg",

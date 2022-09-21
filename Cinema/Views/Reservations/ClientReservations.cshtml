@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Cinema.Models.Reservation>
+
+@{
+    ViewData["Title"] = "My Reservations";
+}
+
+<br />
+<h3 style="color:rgb(243,227,226)">@ViewBag.client's reservations:</h3>
+<hr/>
+<table class="table text-white">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Screening.Movie)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Screening.Cinema)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Screening.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Screening.Time)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Seat)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Screening.Movie.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Screening.Cinema)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Screening.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Screening.Time)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Seat)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.ReservationId" style="color:rgb(243,227,226)">Details</a> | 
+                <a asp-action="Delete" asp-route-id="@item.ReservationId" style="color:rgb(243,227,226)">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -11,6 +11,7 @@ using Cinema.ViewModels;
 using System.Security.Claims;
 using Cinema.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Cinema.Controllers
 {
@@ -26,6 +27,7 @@ namespace Cinema.Controllers
         }
 
         // GET: Reservations
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index(string searchMovie)
         {
             IQueryable<Reservation> reservations = _context.Reservation.Include(r => r.User).Include(r => r.Screening).ThenInclude(r => r.Movie).AsQueryable();
@@ -43,6 +45,27 @@ namespace Cinema.Controllers
             };
 
             return View(VM);
+        }
+
+        [Authorize (Roles="Client")]
+        public async Task<IActionResult> ClientReservations()
+        {
+            var userIdentity = _userManager.GetUserAsync(User).Result.user_ID;
+            var client = await _context.Client.Where(x => x.ClientId == userIdentity).FirstOrDefaultAsync();
+
+            ViewBag.client = client.FullName;
+
+            IQueryable<Reservation> reservations = _context.Reservation.Where(x => x.ClientId == client.ClientId)
+            .Include(e => e.User)
+            .Include(e => e.Screening).ThenInclude(e => e.Movie);
+            await _context.SaveChangesAsync();
+
+            if (reservations == null)
+            {
+                return NotFound();
+            }
+
+            return View(await reservations.ToListAsync());
         }
 
         // GET: Reservations/Details/5
@@ -104,6 +127,7 @@ namespace Cinema.Controllers
         }
 
         // GET: Reservations/Edit/5
+        [Authorize (Roles = "Client")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Reservation == null)
@@ -126,6 +150,7 @@ namespace Cinema.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Client")]
         public async Task<IActionResult> Edit(int id, [Bind("ReservationId,ScreeningId,ClientId,Seat")] Reservation reservation)
         {
             if (id != reservation.ReservationId)

@@ -5,11 +5,12 @@
     ViewData["Title"] = "Log in";
 }
 <body style="background-color:rgba(7, 16, 22, 0.85);">
-<h2>@ViewData["Title"]</h2>
-<div class="row">
+
+<div class="row justify-content-center">
     <div class="col-md-4">
         <section>
             <form id="account" method="post">
+                <h2>@ViewData["Title"]</h2>
                 <h3>Use a local account to log in.</h3>
                 <hr />
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -33,14 +34,12 @@
                     </div>
                 </div>
                 <div>
-                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
+                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-dark">Log in</button>
                 </div>
                 <div>
+                    <br />
                     <p>
-                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
-                    </p>
-                    <p>
-                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="text-danger" style="font-size:18px">Register as a new user</a>
                     </p>
                     @*<p>
                         <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>

@@ -15,12 +15,12 @@
             <input type="hidden" asp-for="ReservationId" />
             <div class="form-group">
                 <label asp-for="ScreeningId" class="control-label"></label>
-                <select asp-for="ScreeningId" class="form-control" asp-items="ViewBag.ScreeningId"></select>
+                <select asp-for="ScreeningId" class="form-control" asp-items="ViewBag.ScreeningId" disabled="true"></select>
                 <span asp-validation-for="ScreeningId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ClientId" class="control-label"></label>
-                <select asp-for="ClientId" class="form-control" asp-items="ViewBag.ClientId"></select>
+                <select asp-for="ClientId" class="form-control" asp-items="ViewBag.ClientId" disabled="true"></select>
                 <span asp-validation-for="ClientId" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -36,7 +36,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="ClientReservations" style="color:rgb(243,227,226)">Back to List</a>
 </div>
 
 @section Scripts {

@@ -10,6 +10,7 @@ using Cinema.Models;
 using Cinema.ViewModels;
 using Cinema.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Cinema.Controllers
 {
@@ -25,7 +26,8 @@ namespace Cinema.Controllers
         }
 
         // GET: Users
-        public async Task<IActionResult> Index( string searchUser)
+        [Authorize (Roles = "Admin")]
+        public async Task<IActionResult> Index(string searchUser)
         {
             IEnumerable<Client> users = _context.Client.AsEnumerable();
 
@@ -41,6 +43,18 @@ namespace Cinema.Controllers
             };
 
             return View(VM);
+        }
+
+        [Authorize(Roles = "Client")]
+        public async Task<IActionResult> Profile()
+        {
+            var userIdentity = _userManager.GetUserAsync(User).Result.user_ID;
+            var client = await _context.Client.Where(x => x.ClientId == userIdentity).FirstOrDefaultAsync();
+
+            ViewBag.id = userIdentity; 
+            ViewBag.client = client.FullName;
+
+            return View(client);
         }
 
         // GET: Users/Details/5

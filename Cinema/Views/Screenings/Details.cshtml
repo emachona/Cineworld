@@ -61,10 +61,10 @@
             }
              @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
             {
-                <a asp-action="Edit" asp-route-id="@Model?.ScreeningId">Edit</a>
+                <a asp-action="Edit" asp-route-id="@Model?.ScreeningId" style="color:rgb(250,250,210)">Edit</a>
                 <span>|</span>
             }
-            <a asp-action="Index">Back to List</a>
+            <a asp-action="Index" style="color:rgb(250,250,210)">Back to List</a>
         </div>
     </div>
 </div>
