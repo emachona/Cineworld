@@ -119,7 +119,7 @@ namespace Cinema.Controllers
             {
                 _context.Add(reservation);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(ClientReservations));
             }
             ViewData["ScreeningId"] = new SelectList(_context.Screening, "ScreeningId", "Cinema", reservation.ScreeningId);
             ViewData["ClientId"] = new SelectList(_context.Client, "ClientId", "FirstName", reservation.ClientId);
@@ -219,7 +219,7 @@ namespace Cinema.Controllers
             }
             
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(ClientReservations));
         }
 
         private bool ReservationExists(int id)

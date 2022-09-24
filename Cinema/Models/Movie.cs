@@ -23,10 +23,10 @@ namespace Cinema.Models
 
         [Display(Name = "Release Date")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}")]
         public DateTime? ReleaseDate { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:0}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:N}")]
         public decimal? Rating { get; set; }
 
         public ICollection<Screening>? Projections { get; set; }

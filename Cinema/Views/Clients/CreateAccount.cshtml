@@ -24,7 +24,7 @@
             </div>
             <br />
             <div class="form-floating">
-                <input asp-for="Age" class="form-control" />
+                <input asp-for="Age" class="form-control" min="14" max="100"/>
                 <label asp-for="Age" class="form-label text-dark"></label>
                 <span asp-validation-for="Age" class="text-danger"></span>
             </div>
